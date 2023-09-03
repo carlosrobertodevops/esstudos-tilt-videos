@@ -38,3 +38,21 @@ docker_build(
 # docker_compose(
 # './docker-compose.yaml'
 # )
+
+k8s_yaml([
+  'k8s/courses-api.yaml',
+  'k8s/courses-frontend.yaml'
+  ]
+)
+
+k8s_resource(
+  'courses-api',
+  port_forwards='8080:8080',
+    labels=['courses-api'],
+)
+
+k8s_resource(
+  'courses-frontend',
+  port_forwards='3000:80',
+    labels=['courses-frontend'],
+)

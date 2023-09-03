@@ -4,9 +4,9 @@ metadata:
   name: courses-api
 spec:
   selector:
-    mathLabels:
+    matchLabels:
       app: courses-api
-  templates:
+  template:
     metadata:
       labels:
         app: courses-api

@@ -4,7 +4,7 @@ metadata:
   name: courses-frontend
 spec:
   selector:
-    mathLabels:
+    matchLabels:
       app: courses-frontend
   templates:
     metadata:
