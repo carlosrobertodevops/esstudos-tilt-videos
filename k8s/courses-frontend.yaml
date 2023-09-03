@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: courses-frontend
+spec:
+  selector:
+    mathLabels:
+      app: courses-frontend
+  templates:
+    metadata:
+      labels:
+        app: courses-frontend
+    spec:
+      containers:
+      - name: courses-frontend
+        image: courses-frontend
+        ports:
+        - containerPort: 80
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: courses-frontend
+spec:
+  selector:
+    app: courses-frontend
+  ports: 3000
+  - containerPort: 80

@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: courses-api
+spec:
+  selector:
+    mathLabels:
+      app: courses-api
+  templates:
+    metadata:
+      labels:
+        app: courses-api
+    spec:
+      containers:
+      - name: courses-api
+        image: courses-api
+        ports:
+        - containerPort: 8080
