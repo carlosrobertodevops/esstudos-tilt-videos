@@ -44,7 +44,7 @@ docker_build(
   ]
 )
 
-k8s_yaml(['./k8s/courses-api.yaml', './k8s/courses-frontend.yaml'])
+k8s_yaml(['k8s/courses-api.yaml', 'k8s/courses-frontend.yaml'])
 
 k8s_resource(
   'courses-api',
