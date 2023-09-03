@@ -1,3 +1,5 @@
+load('ext://uibutton', 'cmd_button', 'location', 'text_input')
+
 local_resource(
   'courses-api-compile',
   cmd='cd courses-api; CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o build/courses-api',
@@ -15,6 +17,13 @@ local_resource(
     'courses-frontend/public',
   ],
   labels=['courses-frontend'],
+)
+
+local_resource(
+  'clean-database',
+  cmd='echo "database droped"',
+  deps=['courses-api-compile'],
+  labels=['courses-api'],
 )
 
 docker_build(
@@ -35,24 +44,29 @@ docker_build(
   ]
 )
 
-# docker_compose(
-# './docker-compose.yaml'
-# )
-
-k8s_yaml([
-  'k8s/courses-api.yaml',
-  'k8s/courses-frontend.yaml'
-  ]
-)
+k8s_yaml(['./k8s/courses-api.yaml', './k8s/courses-frontend.yaml'])
 
 k8s_resource(
   'courses-api',
   port_forwards='8080:8080',
-    labels=['courses-api'],
+  labels=['courses-api'],
 )
 
 k8s_resource(
   'courses-frontend',
   port_forwards='3000:80',
-    labels=['courses-frontend'],
+  labels=['courses-frontend'],
 )
+
+# cmd_button(
+#   'restart_service_group',
+#   text='Restart Service Group',
+#   icon_name='Restart_alt',
+#   argv=['/bin/sh', '-c',
+#     'tilt get uiresource -l$RESOURCE=$RESOURCE --no-headers -ocustom-columns=:.metadata.name | xargs -L1 tilt trigger'
+#   ]
+# )
+
+# docker_compose(
+# './docker-compose.yaml'
+# )

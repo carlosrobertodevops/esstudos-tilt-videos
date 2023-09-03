@@ -6,7 +6,7 @@ spec:
   selector:
     matchLabels:
       app: courses-frontend
-  templates:
+  template:
     metadata:
       labels:
         app: courses-frontend
@@ -17,6 +17,8 @@ spec:
         ports:
         - containerPort: 80
 
+---
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -24,5 +26,6 @@ metadata:
 spec:
   selector:
     app: courses-frontend
-  ports: 3000
-  - containerPort: 80
+  ports:
+  - port: 3000
+    targetPort: 80

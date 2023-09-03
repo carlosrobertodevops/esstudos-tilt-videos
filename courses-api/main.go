@@ -12,6 +12,7 @@ type Course struct {
 func main(){
 	courses := []Course{
 		{Name: "Pós-graduação em Golang"},
+		{Name: "Full Experience Cycle"},
 		{Name: "Full Cycle"},
 		{Name: "MBA em Arquitetura full Cycle"},
 	}

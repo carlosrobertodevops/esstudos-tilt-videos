@@ -16,3 +16,16 @@ spec:
         image: courses-api
         ports:
         - containerPort: 8080
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: courses-api
+spec:
+  selector:
+    app: courses-api
+  ports:
+  - port: 8080
+    targetPort: 8080
