@@ -40,7 +40,7 @@ docker_build(
   'courses-frontend/',
   dockerfile='./courses-frontend/Dockerfile',
   live_update=[
-    sync('./courses-frontend/build/*', '/usr/share/nginx/html'),
+    sync('./courses-frontend/build/*', '/usr/share/nginx/html/'),
   ]
 )
 
