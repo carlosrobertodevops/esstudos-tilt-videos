@@ -58,14 +58,18 @@ k8s_resource(
   labels=['courses-frontend'],
 )
 
-# cmd_button(
-#   'restart_service_group',
-#   text='Restart Service Group',
-#   icon_name='Restart_alt',
-#   argv=['/bin/sh', '-c',
-#     'tilt get uiresource -l$RESOURCE=$RESOURCE --no-headers -ocustom-columns=:.metadata.name | xargs -L1 tilt trigger'
-#   ]
-# )
+cmd_button(
+  'restart_service_group',
+  text='Restart Service Group',
+  icon_name='restart_alt',
+  argv=['/bin/sh', '-c',
+    "tilt get uiresource -l$RESOURCE=$RESOURCE --no-headers -ocustom-columns=:.metadata.name | xargs -L1 tilt trigger"
+  ],
+  location=location.NAV,
+  inputs=[
+    text_input('RESOURCE')
+  ]
+)
 
 # docker_compose(
 # './docker-compose.yaml'
